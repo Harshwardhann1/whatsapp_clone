@@ -1,7 +1,9 @@
+import { useContext } from 'react';
 import { Dialog, Box, Typography, List, ListItem, styled } from '@mui/material';
 import { qrCodeImage } from '../../constants/data';
+import { AccountContext } from '../../context/AccountProvider';
 import { GoogleLogin } from '@react-oauth/google';
-import { jwtDecode } from "jwt-decode";
+import { jwtDecode } from 'jwt-decode';
 
 const dialogStyle = {
   height: '96%',
@@ -11,6 +13,7 @@ const dialogStyle = {
   maxHeight: '100%',
   boxShadow: 'none',
   overflow: 'hidden',
+  backgroundColor: 'none'
 };
 
 const QRCode = styled(`img`)({
@@ -46,15 +49,17 @@ const StyledList = styled(List)`
 `;
 
 const LoginDialog = () => {
+  const { setAccount } = useContext(AccountContext)
   const onLoginSuccess = (res) => {
-    const decoded =jwtDecode(res.credential)
-    console.log(decoded)
-  }
+    const decoded = jwtDecode(res.credential);
+    setAccount(decoded)
+  };
   const onLoginError = (res) => {
-    console.log('Login-failed:',res)
-  }
+    console.log('Login-failed:', res);
+  };
   return (
-    <Dialog open={true} PaperProps={{ sx: dialogStyle }}>
+    <Dialog open={true} PaperProps={{ sx: dialogStyle }}
+    hideBackdrop={true}>
       <Component>
         <Container>
           <Title>To use Whatsapp on your computer: </Title>
@@ -66,11 +71,16 @@ const LoginDialog = () => {
             </ListItem>
           </StyledList>
         </Container>
-        <Box style={{position: 'relative'}}>
+        <Box style={{ position: 'relative' }}>
           <QRCode src={qrCodeImage} alt="qr-code"></QRCode>
-          <Box style = {{ position: 'absolute', top: '50%', transform: 'translateX(25%)'}}>
-            <GoogleLogin onSuccess={onLoginSuccess}
-            onError={onLoginError}/>
+          <Box
+            style={{
+              position: 'absolute',
+              top: '50%',
+              transform: 'translateX(25%)',
+            }}
+          >
+            <GoogleLogin onSuccess={onLoginSuccess} onError={onLoginError} />
           </Box>
         </Box>
       </Component>
