@@ -14,7 +14,7 @@ background-color: #e9edef;
 opacity: .6
 `;
 
-const Conversations = () => {
+const Conversations = ({text}) => {
   const [users, setUsers] = useState([]);
 
 
@@ -23,11 +23,11 @@ const Conversations = () => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await getUsers();
-      console.log('line_13', response);
-      setUsers(response);
+      const filteredData = response.filter(user => user.name.toLowerCase().includes(text.toLowerCase()))
+      setUsers(filteredData);
     };
     fetchData();
-  }, []);
+  }, [text]);
 
   console.log('users:', users);
   return (

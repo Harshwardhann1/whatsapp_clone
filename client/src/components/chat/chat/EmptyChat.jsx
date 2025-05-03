@@ -14,26 +14,28 @@ const Container = styled(Box)`
 
 const Image = styled('img')({
   width: 400,
-  marginTop: 100
+  marginTop: 100,
 });
 
 const StyledDivider = styled(Divider)`
-margin: 40px 0;
-opacity: 0.4;`
+  margin: 40px 0;
+  opacity: 0.4;
+`;
 
 const Title = styled(Typography)`
-font-size: 32px;
-margin: 25px 0 10px 0;
-font-family: inherit;
-font-weight: 300;
-color: #41425d`
+  font-size: 32px;
+  margin: 25px 0 10px 0;
+  font-family: inherit;
+  font-weight: 300;
+  color: #41425d;
+`;
 
-const SubTitle = styled(Typography) `
-font-size: 14px;
-color: #667781;
-font-weight: 400;
-font-family: inherit`
-
+const SubTitle = styled(Typography)`
+  font-size: 14px;
+  color: #667781;
+  font-weight: 400;
+  font-family: inherit;
+`;
 
 const EmptyChat = () => {
   return (
