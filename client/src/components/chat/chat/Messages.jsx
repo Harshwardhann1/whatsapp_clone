@@ -14,6 +14,7 @@ const Component = styled(Box)`
 `;
 
 const Messages = ({ person, conversation }) => {
+  console.log("✅ conversation in Messages:", conversation)
   const [value, setValue] = useState('');
 
   const { account } = useContext(AccountContext);
@@ -24,7 +25,7 @@ const Messages = ({ person, conversation }) => {
       let message = {
         senderId: account.sub,
         receiverId: person.sub,
-        conversationId: conversation._id,
+        conversationId: conversation?._id,
         type: 'text',
         text: value,
       };

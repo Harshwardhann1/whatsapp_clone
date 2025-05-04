@@ -10,7 +10,7 @@ export const newConversation = async (request, response) => {
       members: { $all: [receiverId, senderId] },
     });
 
-    if (exist) {
+    if (exist && exist.length !== 0) {
       return response.status(200).json('Conversation already exists.');
     }
 
