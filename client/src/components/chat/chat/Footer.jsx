@@ -34,7 +34,7 @@ const ClipIcon = styled(AttachFileOutlinedIcon)`
   transform: rotate(40deg);
 `;
 
-const Footer = ({ sendText , setValue}) => {
+const Footer = ({ sendText , setValue, value}) => {
   return (
     <Container>
       <EmojiEmotionsOutlinedIcon />
@@ -44,6 +44,7 @@ const Footer = ({ sendText , setValue}) => {
           placeholder="Type a message"
           onChange={(e) => setValue(e.target.value)}
           onKeyPress={(e) => sendText(e)}
+          value={value}
         />
       </Search>
       <MicOutlinedIcon />
