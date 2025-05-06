@@ -4,10 +4,17 @@ import Route from './routes/route.js';
 import cors from 'cors';
 import { connection } from './database/db.js';
 import bodyParser from 'body-parser';
+import { fileURLToPath } from 'url';
+import path from 'path';
 dotenv.config();
 
 const app = express();
+// These two lines are required if you're using ES Modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
+// ✅ Serve files in /uploads via public URL
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 const PORT = process.env.PORT;
 const MONGO_URL = process.env.MONGO_URL;
 
